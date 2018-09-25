@@ -27,23 +27,23 @@ def process_dir(path):
     dog_list = []
 
     # Your code goes here
-    for root, dirs, files in os.walk(path):
-        for i in dirs:
-            dir_list.append(i)
-        for i in files:
-                file_list.append(i)
-    for i in range(len(file_list)):
+    for root, dirs, files in os.walk(path): #loop goes over files on directory and subdirectory
+        for i in dirs: 
+            dir_list.append(i) #adds any file found on subdirectories to the array
+        for i in files: #
+                file_list.append(i) #adds any file found on directory to the array
+    for i in range(len(file_list)): #loop goes to the array created, which length is the number of files on the root - 1
         if classify_pic(file_list[i]) > 0.5:
-            dog_list.append(file_list[i])
+            dog_list.append(file_list[i]) #creates an array and adds all files classified wit a number greater than 0.5
         else:
-            cat_list.append(file_list[i])
+            cat_list.append(file_list[i]) #creates an array and adds all files classified with a number less than 0.5
     return cat_list, dog_list
 
 
 
 def main():
-    start_path = './' 
-    cats, dogs = process_dir(start_path)
+    start_path = './' #starts the path of the directory
+    cats, dogs = process_dir(start_path) #calls the method with the start of the directory
     print("CAT LIST:")
     print(cats)
     print("DOG LIST:")
